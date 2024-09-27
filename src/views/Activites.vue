@@ -1,7 +1,7 @@
 <template>
     <div class="tournois-container">
-        <p>Page d'activités</p>
-        <div v-if="tournois.length">
+        <h1 class="page-title">Page d'activités</h1>
+        <div class="cards-container" v-if="tournois.length">
             <!-- Affichage des tournois sous forme de cartes -->
             <div v-for="tournoi in tournois" :key="tournoi._id" class="card">
                 <img :src="getImage(tournoi)" alt="Image du tournoi" class="card-image" />
@@ -27,11 +27,14 @@ export default {
     },
     methods: {
         formatDate(dates) {
-            const day = dates.jour.toString().padStart(2, '0');
-            const month = dates.mois.toString().padStart(2, '0');
-            const hours = dates.heures.toString().padStart(2, '0');
-            const minutes = dates.min.toString().padStart(2, '0');
-            return `${day}/${month} à ${hours}h${minutes}`;
+            // Liste des mois en français
+            const mois = [
+                "janvier", "février", "mars", "avril", "mai", "juin", 
+                "juillet", "août", "septembre", "octobre", "novembre", "décembre"
+            ];
+            const day = dates.jour.toString().padStart(2, '0'); // Formater le jour avec deux chiffres
+            const monthName = mois[dates.mois - 1]; // Obtenir le nom du mois correspondant
+            return `${day} ${monthName} à ${dates.heures}h${dates.min.toString().padStart(2, '0')}`;
         },
         getImage(tournoi) {
             // Retourne l'image définie dans les données du tournoi, ou une image par défaut si aucune n'est définie
@@ -43,20 +46,31 @@ export default {
 
 <style scoped>
 .tournois-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.cards-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    flex-wrap: wrap; /* Permet le retour à la ligne si nécessaire */
+    justify-content: center; /* Centre les cartes horizontalement */
+    gap: 20px; /* Espace entre les cartes */
 }
 
 .card {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 300px; /* Largeur fixe des cartes */
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease;
+    background-color: #fce012;
 }
 
 .card:hover {
