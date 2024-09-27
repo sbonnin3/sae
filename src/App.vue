@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <NavBar :links="navLinks" />
+    <NavBar :titles="navTitles" @menu-clicked="handleMenuClick" />
     <router-view></router-view>
   </div>
 </template>
@@ -14,18 +14,35 @@ export default {
   components: {
     NavBar,
   },
-  data() {
-    return {
-      navLinks: [
-        { name: "Accueil", path: "/Accueil" },
-        { name: "Activités", path: "/Activites" },
-        { name: "Prestataires", path: "/Prestataires" },
-        { name: "Connexion", path: "/Connexion" }
-      ]
-    };
-  },
+  data: () => ({
+    navTitles: [
+      { text: 'Accueil', color: 'lightblue' },
+      { text: 'Activités', color: 'lightgreen' },
+      { text: 'Prestataires', color: 'lightcoral' },
+      { text: 'Connexion', color: 'lightcoral' }
+    ],
+  }),
   methods: {
     ...mapActions(['getAllTournois']),
+
+    handleMenuClick(index) {
+      // Définir les chemins associés à chaque bouton
+      let route = '';
+      if (index === 0) {
+        route = '/Accueil';
+      } else if (index === 1) {
+        route = '/Activites';
+      } else if (index === 2) {
+        route = '/Prestataire';
+      } else if (index === 3) {
+        route = '/Connexion';
+      }
+
+      // Vérifier si la route actuelle est différente de la route cible
+      if (this.$route.path !== route) {
+        this.$router.push(route);
+      }
+    },
   },
   mounted() {
     this.getAllTournois();
@@ -39,7 +56,7 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #949494;
 }
 
 #app {
