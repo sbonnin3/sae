@@ -3,7 +3,7 @@
         <div class="nav-container">
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a href="/Accueil" class="nav-link">Accueil</a>
+                    <a href="@/view/Accueil.vue" class="nav-link">Accueil</a>
                 </li>
                 <li class="nav-item">
                     <a href="/Activites" class="nav-link">Activités</a>
