@@ -87,7 +87,7 @@ html {
 }
 
 .nav-link:hover {
-    background-color: #555;
+    background-color: #000000;
     color: #fff;
 }
 

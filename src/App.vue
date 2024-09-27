@@ -39,7 +39,7 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #fee20c;
+  background-color: #ffffff;
 }
 
 #app {
@@ -49,7 +49,7 @@ html, body {
   text-align: center;
   color: #2c3e50;
   margin-top: 100px;
-  background-color: #fee20c;
+  background-color: #ffffff;
   min-height: 100vh;
   padding-bottom: 20px;
 }
