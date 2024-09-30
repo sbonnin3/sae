@@ -16,10 +16,11 @@ export default {
   },
   data: () => ({
     navTitles: [
-      { text: 'Accueil', color: 'lightblue' },
-      { text: 'Activités', color: 'lightgreen' },
-      { text: 'Prestataires', color: 'lightcoral' },
-      { text: 'Connexion', color: 'lightcoral' }
+      { text: 'Accueil' },
+      { text: 'Activités' },
+      { text: 'Carte' },
+      { text: 'Prestataires' },
+      { text: 'Connexion' }
     ],
   }),
   methods: {
@@ -33,8 +34,10 @@ export default {
       } else if (index === 1) {
         route = '/Activites';
       } else if (index === 2) {
-        route = '/Prestataire';
+        route = '/Carte';
       } else if (index === 3) {
+        route = '/Prestataires';
+      } else if (index === 4) {
         route = '/Connexion';
       }
 
@@ -56,7 +59,6 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #949494;
 }
 
 #app {
@@ -65,7 +67,7 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 100px;
+  margin-top: 0px;
   background-color: #ffffff;
   min-height: 100vh;
   padding-bottom: 20px;
