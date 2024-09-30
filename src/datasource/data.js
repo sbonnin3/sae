@@ -1,6 +1,3 @@
-// src/datasource/data.js
-
-// Données des tournois avec description et nombre de places limitées
 export const tournois = [
   {
     _id: "000001",
@@ -14,7 +11,7 @@ export const tournois = [
       min: 0,
     },
     description: "Participez à un tournoi de Molkky, le célèbre jeu de quilles finlandaises. Venez tester votre adresse dans une ambiance conviviale.",
-    placesLimite: 20, // Nombre de places limitées pour cet événement
+    placesLimite: 20,
     image: "https://woopy.fr/wp-content/uploads/2016/05/soiree-molkky-woopy-2015-jeu-quilles-finlandais.jpg"
   },
   {
@@ -81,7 +78,7 @@ export const tournois = [
     _id: "000006",
     nom: "Basketball",
     prix: 3,
-    lieu: "Stade l'enjeu",
+    lieu: "Place du drapeau",
     dates: {
       mois: 7,
       jour: 15,
@@ -109,7 +106,6 @@ export const tournois = [
   }
 ];
 
-// Données des réservations
 export const reservations = [
   {
     tournoiId: "000001",
@@ -121,4 +117,62 @@ export const reservations = [
     userId: "user123",
     places: 1,
   }
+];
+
+export const points = [
+  {
+    category: 'Toilettes',
+    name: 'Toilettes Publiques',
+    coordinates: [46.647, -0.25235],
+  },
+  {
+    category: 'Toilettes',
+    name: 'Toilettes Publiques',
+    coordinates: [46.649, -0.2523],
+  },
+  {
+    category: 'Toilettes',
+    name: 'Toilettes Publiques',
+    coordinates: [46.64904, -0.25074],
+  },
+  {
+    category: 'Toilettes',
+    name: 'Toilettes Publiques',
+    coordinates: [46.646255, -0.24848],
+  },
+  {
+    category: 'Toilettes',
+    name: 'Toilettes Publiques',
+    coordinates: [46.6502, -0.2473],
+  },
+  {
+    category: 'Toilettes',
+    name: 'Toilettes Publiques',
+    coordinates: [46.64585, -0.25125],
+  },
+  {
+    category: 'Parking',
+    name: 'Parking',
+    coordinates: [46.645455, -0.25183],
+  },
+  {
+    category: 'Tournois',
+    name: 'Tournoi de Gobbit',
+    coordinates: [46.647861, -0.247102],
+  },
+  {
+    category: 'Tournois',
+    name: 'Tournoi de Basketball',
+    coordinates: [46.651968, -0.252591],
+  },
+  {
+    category: 'Stand de jeux',
+    name: 'Black Rock',
+    coordinates: [46.647235, -0.24759],
+  },
+  {
+    category: 'Restauration',
+    name: 'Mie Caline',
+    coordinates: [46.647987, -0.247901],
+  },
 ];

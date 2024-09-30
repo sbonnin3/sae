@@ -1,18 +1,46 @@
 <template>
     <div class="map-container">
       <p>Carte de Parthenay</p>
-      <l-map :zoom="zoom" :center="center" :options="mapOptions" style="height: 500px; width: 100%;">
+      <!-- Selecteur de catégorie -->
+      <select v-model="selectedCategory" @change="filterPoints">
+        <option value="">Toutes les catégories</option>
+        <option v-for="category in categories" :key="category" :value="category">
+          {{ category }}
+        </option>
+      </select>
+  
+      <!-- Carte -->
+      <l-map :zoom="zoom" :center="center" style="height: 500px; width: 100%;">
         <l-tile-layer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           :attribution="''"
         ></l-tile-layer>
+  
+        <!-- Affichage des marqueurs avec icône personnalisée -->
+        <l-marker
+          v-for="(point, index) in filteredPoints"
+          :key="index"
+          :lat-lng="point.coordinates"
+          :icon="getIconForCategory(point.category)"
+        >
+          <l-popup>{{ point.name }}</l-popup>
+        </l-marker>
       </l-map>
     </div>
   </template>
   
   <script>
-  import { LMap, LTileLayer } from "vue2-leaflet";
+  import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
   import "leaflet/dist/leaflet.css";
+  import L from "leaflet";
+  import { points } from "@/datasource/data.js";
+  
+  // Import des icônes pour chaque catégorie
+  import toiletIcon from "@/assets/icons/toilet-icon.png";
+  import parkingIcon from "@/assets/icons/parking-icon.png";
+  import tournamentIcon from "@/assets/icons/tournament-icon.png";
+  import standIcon from "@/assets/icons/stand-icon.png";
+  import restaurationIcon from "@/assets/icons/restauration-icon.png";
   
   export default {
     // eslint-disable-next-line
@@ -20,30 +48,96 @@
     components: {
       LMap,
       LTileLayer,
+      LMarker,
+      LPopup,
     },
     data() {
       return {
-        zoom: 14, // Zoom par défaut pour une vue de la ville
-        center: [46.6513, -0.2494], // Coordonnées pour centrer sur le centre-ville de Parthenay
-        mapOptions: {
-          attributionControl: false, // Désactive l'attribution par défaut
+        zoom: 14,
+        center: [46.6513, -0.2494], // Centre de Parthenay
+        selectedCategory: "", // Catégorie sélectionnée
+        points, // Points importés depuis data.js
+        // Définir les icônes pour chaque catégorie
+        icons: {
+          'Toilettes': L.icon({
+            iconUrl: toiletIcon,
+            iconSize: [30, 30], // Taille de l'icône
+            iconAnchor: [15, 30], // Position de l'ancrage
+            popupAnchor: [0, -30], // Position de la popup par rapport à l'icône
+          }),
+          'Parking': L.icon({
+            iconUrl: parkingIcon,
+            iconSize: [30, 30],
+            iconAnchor: [15, 30],
+            popupAnchor: [0, -30],
+          }),
+          'Tournois': L.icon({
+            iconUrl: tournamentIcon,
+            iconSize: [30, 30],
+            iconAnchor: [15, 30],
+            popupAnchor: [0, -30],
+          }),
+          "Stand de jeux": L.icon({
+            iconUrl: standIcon,
+            iconSize: [30, 30],
+            iconAnchor: [15, 30],
+            popupAnchor: [0, -30],
+          }),
+          'Restauration': L.icon({
+            iconUrl: restaurationIcon,
+            iconSize: [30, 30],
+            iconAnchor: [15, 30],
+            popupAnchor: [0, -30],
+          }),
         },
       };
+    },
+    computed: {
+      // Filtrer les points en fonction de la catégorie sélectionnée
+      filteredPoints() {
+        if (this.selectedCategory === "") {
+          return this.points;
+        }
+        return this.points.filter(point => point.category === this.selectedCategory);
+      },
+      // Extraire les catégories uniques pour le filtre
+      categories() {
+        return [...new Set(this.points.map(point => point.category))];
+      },
+    },
+    methods: {
+      // Retourne l'icône correspondant à la catégorie
+      getIconForCategory(category) {
+        return this.icons[category] || this.defaultIcon();
+      },
+      // Définir une icône par défaut si la catégorie n'est pas trouvée
+      defaultIcon() {
+        return L.icon({
+          iconUrl: "https://leafletjs.com/examples/custom-icons/leaf-red.png", // Icône par défaut
+          iconSize: [30, 30],
+          iconAnchor: [15, 30],
+          popupAnchor: [0, -30],
+        });
+      },
     },
   };
   </script>
   
   <style scoped>
   .map-container {
-    max-width: 90%; /* Limite la largeur de la carte à 90% de la page */
-    margin: 20px auto; /* Ajoute une marge en haut/bas et centre la carte horizontalement */
+    max-width: 90%;
+    margin: 20px auto;
   }
   
   .leaflet-container {
-    height: 500px; /* Hauteur de la carte */
-    width: 100%; /* Utilise toute la largeur de .map-container */
-    border: 1px solid #ddd; /* Bordure optionnelle pour délimiter la carte */
-    border-radius: 8px; /* Coins arrondis pour un style plus doux */
+    height: 500px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  select {
+    margin-bottom: 10px;
   }
   </style>
   
