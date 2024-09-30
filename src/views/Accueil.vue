@@ -6,8 +6,7 @@
 
 <script>
 export default {
-    // eslint-disable-next-line
-    name: "Accueil",
+    name: "PageAccueil",
     components: {
     },
 }

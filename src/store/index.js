@@ -1,23 +1,23 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { getAllTournois } from '@/services/tournoisService'; // Assure-toi que c'est bien importé
+import { getAllTournois } from '@/services/tournoisService';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        tournois: [], // Initialement un tableau vide
+        tournois: [],
     },
     mutations: {
         SET_TOURNOIS(state, tournois) {
-            state.tournois = tournois; // Mets à jour l'état avec les tournois
+            state.tournois = tournois;
         }
     },
     actions: {
         async getAllTournois({ commit }) {
             try {
                 const response = await getAllTournois();
-                console.log('Tournois récupérés :', response.data); // Ajoute un log ici
+                console.log('Tournois récupérés :', response.data);
                 if (response.error === 0) {
                     commit('SET_TOURNOIS', response.data);
                 }
@@ -27,6 +27,6 @@ export default new Vuex.Store({
         }
     },
     getters: {
-        tournois: state => state.tournois, // Getter pour accéder aux tournois depuis les composants
+        tournois: state => state.tournois,
     }
 });
