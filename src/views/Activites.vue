@@ -52,8 +52,9 @@
                     <label for="searchStand" class="search-label">Nom de stand :</label>
                     <input id="searchStand" type="text" v-model="searchStand" placeholder="Rechercher par nom de stand"
                         class="search-input" />
-                    <button @click="resetFilters" class="reset-button">Réinitialiser les filtres</button>
+                    
                 </div>
+                <button @click="resetFilters" class="reset-button">Réinitialiser les filtres</button>
             </div>
 
             <!-- Affichage des jeux filtrés sous forme de cartes -->
@@ -280,30 +281,27 @@ export default {
     margin-bottom: 20px;
 }
 
-/* Conteneur des onglets de navigation (Jeux / Tournois) */
 .tab-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .tab-container button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  background: none;
+  font-size: 1em;
+  margin: 0 10px;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
+.tab-container button:hover,
 .tab-container button.active {
-    background-color: #ffd700;
-    color: #fff;
-}
-
-.tab-container button:hover {
-    background-color: #d0d0d0;
+  color: #d22328;
+  border-bottom-color: #d22328;
 }
 
 /* Conteneur pour l'affichage des cartes de jeux et tournois */
@@ -469,6 +467,7 @@ form button {
     color: white;
     border: none;
     padding: 10px 20px;
+    margin: auto;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
