@@ -1,67 +1,98 @@
 <template>
-    <div class="navbar">
-        <button v-for="(title, index) in titles" :key="index" class="nav-button" @click="emitMenuClicked(index)">
-            {{ title.text }}
-        </button>
-    </div>
+  <div class="navbar-container">
+    <nav class="navbar">
+      <div class="nav-titles">
+        <img src="../assets/images/logo.png" alt="logo" width="100px" height="80px">
+        <p
+            v-for="(title, index) in titles"
+            :key="index"
+            :style="{ color: title.color }"
+            @click="emitMenuClicked(index)"
+            class="nav-item"
+        >
+          {{ title.text }}
+        </p>
+      </div>
+    </nav>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "NavBar",
-    props: {
-        titles: {
-            type: Array,
-            required: true,
-        },
+  name: "NavBar",
+  props: {
+    titles: {
+      type: Array,
+      required: true,
     },
-    methods: {
-        emitMenuClicked(index) {
-            this.$emit("menu-clicked", index);
-        },
+  },
+  methods: {
+    emitMenuClicked(index) {
+      this.$emit("menu-clicked", index);
     },
+  },
 };
 </script>
 
 <style scoped>
+
+.navbar-container {
+  padding: 50px;
+}
 .navbar {
-    display: flex;
-    /* Affiche les éléments de la navbar sur une ligne */
-    justify-content: space-around;
-    /* Espace uniformément les boutons */
-    align-items: center;
-    /* Aligne verticalement les éléments */
-    background-color: #000000;
-    /* Fond de la navbar */
-    padding: 10px;
-    /* Espace intérieur de la navbar */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Légère ombre pour la navbar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 5px 20px;
+  box-shadow: 0 6px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  height: 80px;
 }
 
-.nav-button {
-    color: #fff;
-    /* Couleur du texte */
-    padding: 10px 20px;
-    /* Espace intérieur du bouton */
-    margin: 5px;
-    /* Espace extérieur entre les boutons */
-    border: none;
-    /* Retire les bordures */
-    border-radius: 20px;
-    /* Coins arrondis */
-    cursor: pointer;
-    /* Curseur pointeur */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    /* Transition douce pour le hover */
-    background-color: #000000;
-    /* Fond de la navbar */
-    font-size: 16px;
-    /* Taille du texte du bouton, modifiable selon tes besoins */
+.nav-titles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: 50px;
 }
 
-.nav-button:hover {
-    background-color: #d22328;
-    /* Changement de couleur au survol */
+p.nav-item {
+  margin-top: 10px;
+  margin-left: 60px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: black;
+}
+
+p.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: red;
+  transition: width 0.3s ease;
+}
+
+p.nav-item:hover::after {
+  width: 100%;
+}
+
+p.nav-item:hover {
+  color: #ff6f61;
+  transform: scale(1.1);
 }
 </style>
