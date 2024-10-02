@@ -15,8 +15,7 @@
                 <!-- Ligne 1 : Nom de jeu -->
                 <div class="search-row">
                     <label for="searchName" class="search-label">Nom de jeu :</label>
-                    <input id="searchName" type="text" v-model="searchName" placeholder="Rechercher par nom de jeu"
-                        class="search-input" />
+                    <input id="searchName" type="text" v-model="searchName" placeholder="Rechercher par nom de jeu" class="search-input" />
                 </div>
 
                 <!-- Ligne 2 : Types de jeux (Checkbox) -->
@@ -32,28 +31,23 @@
                 <!-- Ligne 3 : Nombre de joueurs, âge minimum, durée maximum -->
                 <div class="search-row">
                     <label for="searchPlayers" class="search-label">Nombre de joueurs :</label>
-                    <input id="searchPlayers" type="number" v-model="searchPlayers" min="1"
-                        placeholder="Nombre de joueurs" class="search-input" />
+                    <input id="searchPlayers" type="number" v-model="searchPlayers" min="1" placeholder="Nombre de joueurs" class="search-input" />
 
                     <label for="searchAge" class="search-label">Âge minimum :</label>
-                    <input id="searchAge" type="number" v-model="searchAge" min="1" placeholder="Âge minimum"
-                        class="search-input" />
+                    <input id="searchAge" type="number" v-model="searchAge" min="1" placeholder="Âge minimum" class="search-input" />
 
                     <label for="searchDuration" class="search-label">Durée max (min) :</label>
-                    <input id="searchDuration" type="number" v-model="searchDuration" min="1"
-                        placeholder="Durée max (minutes)" class="search-input" />
+                    <input id="searchDuration" type="number" v-model="searchDuration" min="1" placeholder="Durée max (minutes)" class="search-input" />
                 </div>
 
                 <!-- Ligne 4 : Nom de stand et Réinitialisation -->
                 <div class="search-row">
                     <label for="searchEditeur" class="search-label">Nom de l'éditeur :</label>
-                    <input id="searchEditeur" type="text" v-model="searchEditeur" placeholder="Rechercher par nom d'éditeur"
-                        class="search-input" />
+                    <input id="searchEditeur" type="text" v-model="searchEditeur" placeholder="Rechercher par nom d'éditeur" class="search-input" />
                     <label for="searchStand" class="search-label">Nom de stand :</label>
-                    <input id="searchStand" type="text" v-model="searchStand" placeholder="Rechercher par nom de stand"
-                        class="search-input" />
-                    
+                    <input id="searchStand" type="text" v-model="searchStand" placeholder="Rechercher par nom de stand" class="search-input" />
                 </div>
+
                 <button @click="resetFilters" class="reset-button">Réinitialiser les filtres</button>
             </div>
 
@@ -84,8 +78,7 @@
                         <p class="card-location">{{ tournoi.lieu }}</p>
                         <p class="card-date">{{ formatDate(tournoi.dates) }}</p>
                         <p class="card-price">Prix: {{ tournoi.prix }}€</p>
-                        <p class="card-places">Places restantes: {{ getPlacesRestantes(tournoi._id,
-                            tournoi.placesLimite) }}</p>
+                        <p class="card-places">Places restantes: {{ getPlacesRestantes(tournoi._id, tournoi.placesLimite) }}</p>
                     </div>
                 </div>
             </div>
@@ -102,7 +95,7 @@
                 <p><strong>Nombre de joueurs :</strong> {{ selectedJeu.nombre_de_joueurs.join(', ') }}</p>
                 <p><strong>Âge minimum :</strong> {{ selectedJeu.age_minimum }} ans</p>
                 <p><strong>Durée :</strong> {{ selectedJeu.duree }} minutes</p>
-                <p><strong>Éditeur : </strong> {{ jeu.editeur }}</p>
+                <p><strong>Éditeur :</strong> {{ selectedJeu.editeur }}</p>
                 <p><strong>Nom du stand :</strong> {{ selectedJeu.nom_stand }}</p>
             </div>
         </div>
@@ -118,8 +111,7 @@
                 <p><strong>Description :</strong> {{ selectedTournoi.description }}</p>
                 <p><strong>Prix :</strong> {{ selectedTournoi.prix }}€</p>
                 <p><strong>Nombre de places réservées :</strong> {{ getReservationCount(selectedTournoi._id) }}</p>
-                <p><strong>Places restantes :</strong> {{ getPlacesRestantes(selectedTournoi._id,
-                    selectedTournoi.placesLimite) }}</p>
+                <p><strong>Places restantes :</strong> {{ getPlacesRestantes(selectedTournoi._id, selectedTournoi.placesLimite) }}</p>
                 <button class="reserve-button" @click="openReservationForm">Réserver</button>
             </div>
         </div>
@@ -137,8 +129,7 @@
                     <input type="text" v-model="reservationForm.firstName" required />
 
                     <label for="pseudo">Pseudo (facultatif) :</label>
-                    <input type="text" v-model="reservationForm.pseudo"
-                        placeholder="Si vide, sera remplacé par le prénom" />
+                    <input type="text" v-model="reservationForm.pseudo" placeholder="Si vide, sera remplacé par le prénom" />
 
                     <label for="email">Adresse Email:</label>
                     <input type="email" v-model="reservationForm.email" required />
@@ -194,7 +185,7 @@ export default {
                 const ageMatch = this.searchAge ? jeu.age_minimum <= Number(this.searchAge) : true;
                 // Filtre par durée maximum
                 const durationMatch = this.searchDuration ? jeu.duree <= Number(this.searchDuration) : true;
-                // Filtre par nom de stand
+                // Filtre par éditeur
                 const editeurMatch = jeu.editeur.toLowerCase().includes(this.searchEditeur.toLowerCase());
                 // Filtre par nom de stand
                 const standMatch = jeu.nom_stand.toLowerCase().includes(this.searchStand.toLowerCase());
