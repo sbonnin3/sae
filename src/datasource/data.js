@@ -3,6 +3,7 @@ import { reservations } from './reservations';
 import { points } from './points';
 import { comptes } from './comptes';
 import { jeux } from './jeux';
+import { stands } from './stands';
 
 export {
   tournois,
@@ -10,4 +11,5 @@ export {
   points,
   comptes,
   jeux,
+  stands,
 };
