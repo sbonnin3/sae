@@ -12,7 +12,7 @@ export const tournois = [
         },
         description: "Participez à un tournoi de Molkky, le célèbre jeu de quilles finlandaises. Venez tester votre adresse dans une ambiance conviviale.",
         placesLimite: 20,
-        image: "https://woopy.fr/wp-content/uploads/2016/05/soiree-molkky-woopy-2015-jeu-quilles-finlandais.jpg"
+        image: require('@/assets/images/tournois_molkky.png')
     },
     {
         _id: "000002",
@@ -27,7 +27,7 @@ export const tournois = [
         },
         description: "Affrontez d'autres participants dans un tournoi de Corn Hole. Le jeu consiste à lancer des sacs de maïs dans un trou pour marquer des points.",
         placesLimite: 15,
-        image: "https://woopy.fr/wp-content/gallery/nocturne-woopy-cornhole-flip-2019/MG_1609.jpg"
+        image: require('@/assets/images/tournois_cornhole.png')
     },
     {
         _id: "000003",
@@ -42,7 +42,7 @@ export const tournois = [
         },
         description: "Une bataille de paintball en équipe dans un cadre unique. Réservez vite vos places pour ce moment de fun et de stratégie.",
         placesLimite: 10,
-        image: "https://www.bawtrypaintballfields.co.uk/images/Fold1-Slider-Image.jpg"
+        image: require('@/assets/images/tournois_paintball.png')
     },
     {
         _id: "000004",
@@ -57,7 +57,7 @@ export const tournois = [
         },
         description: "Un tournoi e-sport de Rocket League pour les passionnés de jeux vidéo. Montrez vos compétences et devenez le champion de cette édition.",
         placesLimite: 30,
-        image: "https://www.cc-parthenay-gatine.fr/fileadmin/_processed_/8/c/csm_FLIP_2023__15__93fbf24558.png"
+        image: require('@/assets/images/tournois_rocketleague.png')
     },
     {
         _id: "000005",
@@ -72,7 +72,7 @@ export const tournois = [
         },
         description: "Mettez-vous au défi dans cet escape game spécialement conçu pour le festival. Résolvez les énigmes et échappez-vous avant le temps imparti.",
         placesLimite: 12,
-        image: "https://dev.jeux-festival.com/wp-content/uploads/2023/01/tresor-a-double-tour.png"
+        image: require('@/assets/images/tournois_escapegame.png')
     },
     {
         _id: "000006",
@@ -87,7 +87,7 @@ export const tournois = [
         },
         description: "Un tournoi de basketball 3 contre 3. Formez votre équipe et venez affronter les autres dans une ambiance sportive et festive.",
         placesLimite: 25,
-        image: "https://www.cc-parthenay-gatine.fr/fileadmin/_processed_/e/3/csm_FLIP_2023__16__7a935f6734.png"
+        image: require('@/assets/images/tournois_basketball.png')
     },
     {
         _id: "000007",
@@ -102,6 +102,6 @@ export const tournois = [
         },
         description: "Un tournoi du jeu de société Gobbit, où réflexes et observation sont de mise. Que le meilleur gagne !",
         placesLimite: 20,
-        image: "https://m.media-amazon.com/images/I/910dojcTJIL._AC_UF1000,1000_QL80_.jpg"
+        image: require('@/assets/images/tournois_gobbit.png')
     }
 ];

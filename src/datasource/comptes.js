@@ -31,7 +31,7 @@ export const comptes = [
         type: "utilisateur",
         identifiant: "utilisateur",
         mot_de_passe: "utilisateur",
-        nom: "FULCRAN",
+        nom: "FULCRAND",
         prenom: "Lucas",
         mail: "lucas.fulcran@gmail.com",
     }
