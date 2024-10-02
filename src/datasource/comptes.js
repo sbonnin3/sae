@@ -1,6 +1,5 @@
 export const comptes = [
     {
-        utilisateurID: "0000001",
         type: "administrateur",
         identifiant: "administrateur",
         mot_de_passe: "administrateur",
@@ -9,7 +8,6 @@ export const comptes = [
         mail: "simon.bonnin@gmail.com",
     },
     {
-        utilisateurID: "0000002",
         type: "restaurateur",
         identifiant: "prestataire1",
         mot_de_passe: "prestataire1",
@@ -18,7 +16,6 @@ export const comptes = [
         mail: "johan.lancon@gmail.com",
     },
     {
-        utilisateurID: "0000003",
         type: "createur",
         identifiant: "prestataire2",
         mot_de_passe: "prestataire2",
@@ -27,7 +24,6 @@ export const comptes = [
         mail: "xavier.gousset@gmail.com",
     },
     {
-        utilisateurID: "0000004",
         type: "utilisateur",
         identifiant: "utilisateur",
         mot_de_passe: "utilisateur",
