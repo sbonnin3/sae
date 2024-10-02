@@ -51,6 +51,9 @@
           <img :src="selectedJeu.image" alt="Image du jeu" class="modal-image" />
           <p><strong>Type :</strong> {{ selectedJeu.type }}</p>
           <p><strong>Joueurs :</strong> {{ selectedJeu.nombre_de_joueurs }}</p>
+          <p><strong>Âge minimum : </strong> À partir de {{ selectedJeu.age_minimum }} ans</p>
+          <p><strong>Durée : </strong> {{ selectedJeu.duree }}</p>
+          <p><strong>Éditeur :</strong> {{ selectedJeu.editeur }}</p>
           <p><strong>Prix :</strong> {{ selectedJeu.prix }}€</p>
         </div>
       </div>

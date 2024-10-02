@@ -1,5 +1,6 @@
 export const jeux = [
     {
+        _id: '01',
         type: 'Rapidité',
         name: 'Gobbit',
         image: require('@/assets/images/jeu_gobbit.png'),
@@ -8,8 +9,10 @@ export const jeux = [
         duree: 15,
         editeur: "Black Rock",
         nom_stand: "Stand1",
+        prix: "15",
     },
     {
+        _id: '02',
         type: 'Stratégie',
         name: 'Voldétour',
         image: require('@/assets/images/jeu_voldetour.png'),
@@ -18,8 +21,10 @@ export const jeux = [
         duree: 30,
         editeur: "Black Rock",
         nom_stand: "Stand2",
+        prix: "30",
     },
     {
+        _id: '03',
         type: 'Réflexion',
         name: 'Oyez Oyez',
         image: require('@/assets/images/jeu_oyezoyez.png'),
@@ -28,5 +33,6 @@ export const jeux = [
         duree: 10,
         editeur: "Subverti",
         nom_stand: "Stand3",
+        prix: "10",
     },
 ];
