@@ -43,8 +43,7 @@
   import restaurationIcon from "@/assets/icons/restauration-icon.png";
   
   export default {
-    // eslint-disable-next-line
-    name: "Carte",
+    name: "PageCarte",
     components: {
       LMap,
       LTileLayer,
