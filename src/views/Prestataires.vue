@@ -24,6 +24,7 @@
             <img :src="jeu.image" alt="Image du jeu" class="card-image" />
             <div class="card-content">
               <h2 class="card-title">{{ jeu.name }}</h2>
+              <p class="card-price"><strong>Prix :</strong> {{ jeu.prix }}€</p>
             </div>
           </div>
         </div>
@@ -41,6 +42,7 @@
             </div>
           </div>
         </div>
+        <p v-else>Aucun souvenirs disponible.</p>
       </div>
 
       <!-- Fenêtre modale jeux -->
@@ -52,9 +54,8 @@
           <p><strong>Type :</strong> {{ selectedJeu.type }}</p>
           <p><strong>Joueurs :</strong> {{ selectedJeu.nombre_de_joueurs }}</p>
           <p><strong>Âge minimum : </strong> À partir de {{ selectedJeu.age_minimum }} ans</p>
-          <p><strong>Durée : </strong> {{ selectedJeu.duree }}</p>
+          <p><strong>Durée : </strong> {{ selectedJeu.duree }} min</p>
           <p><strong>Éditeur :</strong> {{ selectedJeu.editeur }}</p>
-          <p><strong>Prix :</strong> {{ selectedJeu.prix }}€</p>
         </div>
       </div>
 
@@ -316,7 +317,7 @@ form button {
 
 .card-image {
   width: 100%;
-  height: 200px;
+  height: 300px;
   object-fit: cover;
 }
 
