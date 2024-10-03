@@ -1,21 +1,23 @@
 <template>
-    <div class="login-container">
-        <h1>Connexion</h1>
-        <form @submit.prevent="handleLogin">
-            <label for="identifiant">Identifiant :</label>
-            <input type="text" id="identifiant" v-model="identifiant" required />
+    <div class="page-login">
+        <div class="login-container">
+            <h1>Connexion</h1>
+            <form @submit.prevent="handleLogin">
+                <label for="identifiant">Identifiant :</label>
+                <input type="text" id="identifiant" v-model="identifiant" required />
 
-            <label for="motDePasse">Mot de passe :</label>
-            <input type="password" id="motDePasse" v-model="motDePasse" required />
+                <label for="motDePasse">Mot de passe :</label>
+                <input type="password" id="motDePasse" v-model="motDePasse" required />
 
-            <button type="submit" class="login-button">Se connecter</button>
-            <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
-        </form>
+                <button type="submit" class="login-button">Se connecter</button>
+                <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+            </form>
 
-        <!-- Si l'utilisateur est connecté, afficher le bouton de déconnexion -->
-        <div v-if="userSession" class="user-info">
-            <p>Bienvenue {{ userSession.prenom }} {{ userSession.nom }} !</p>
-            <button @click="handleLogout" class="logout-button">Se déconnecter</button>
+            <!-- Si l'utilisateur est connecté, afficher le bouton de déconnexion -->
+            <div v-if="userSession" class="user-info">
+                <p>Bienvenue {{ userSession.prenom }} {{ userSession.nom }} !</p>
+                <button @click="handleLogout" class="logout-button">Se déconnecter</button>
+            </div>
         </div>
     </div>
 </template>
@@ -65,6 +67,10 @@ export default {
 </script>
 
 <style scoped>
+.page-login {
+    padding-top: 150px;
+}
+
 .login-container {
     max-width: 400px;
     margin: 0 auto;
