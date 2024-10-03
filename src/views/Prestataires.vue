@@ -12,14 +12,22 @@
 
       <!-- Section Restauration -->
       <div v-if="selectedTab === 'Restauration'">
-        <!-- Contenu de la section Restauration (inchangé) -->
+        <div class="cards-container" v-if="restaurants.length">
+          <!-- Affichage des restaurants sous forme de cartes -->
+          <div v-for="restaurant in restaurants" :key="restaurant._id" class="card" @click="openModal(restaurant)">
+            <img :src="restaurant.image" alt="Image du restaurant" class="card-image" />
+            <div class="card-content">
+              <h2 class="card-title">{{ restaurant.nom }}</h2>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Section Boutique -->
       <div v-if="selectedTab === 'Boutique'">
         <h2 class="page-other_title">JEUX</h2>
         <div class="cards-container" v-if="jeux.length">
-          <!-- Affichage des tournois sous forme de cartes -->
+          <!-- Affichage de la boutique sous forme de cartes -->
           <div v-for="jeu in jeux" :key="jeu._id" class="card" @click="openModal(jeu)">
             <img :src="jeu.image" alt="Image du jeu" class="card-image" />
             <div class="card-content">
@@ -73,26 +81,26 @@
 
 <script>
 
-import { jeux, souvenirs} from '@/datasource/data';
+import { jeux, restaurants, souvenirs} from '@/datasource/data';
 
 export default {
   name: "PagePrestataires",
   data() {
     return {
-      selectedTab: 'Boutique', // Onglet par défaut
+      selectedTab: null, // Onglet par défaut
       selectedJeu: null,
-      selectedSouvenir : null,
       jeux,
       souvenirs,
+      restaurants,
     };
   },
   methods: {
     selectTab(tab) {
       this.selectedTab = tab;
     },
-    openModal(jeu) {
-      console.log("Jeu sélectionné:", jeu); // Vérification que le jeu est bien passé
-      this.selectedJeu = jeu;
+    openModal(modal) {
+      console.log(modal + " sélectionné:", modal); // Vérification que la catégorie est bien passé
+      this.selectedJeu = modal;
     },
     closeModal() {
       this.selectedJeu = null;

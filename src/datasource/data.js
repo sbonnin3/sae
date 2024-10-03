@@ -5,6 +5,8 @@ import { comptes } from './comptes';
 import { jeux } from './jeux';
 import { stands } from './stands';
 import { souvenirs } from "./souvenirs";
+import { nourritures } from "./nourritures";
+import { restaurants } from "./restaurants";
 
 export {
   tournois,
@@ -14,4 +16,6 @@ export {
   jeux,
   stands,
   souvenirs,
+  nourritures,
+  restaurants,
 };
