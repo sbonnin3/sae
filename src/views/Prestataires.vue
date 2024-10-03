@@ -14,12 +14,25 @@
       <div v-if="selectedTab === 'Restauration'">
         <div class="cards-container" v-if="restaurants.length">
           <!-- Affichage des restaurants sous forme de cartes -->
-          <div v-for="restaurant in restaurants" :key="restaurant._id" class="card" @click="openModal(restaurant)">
+          <div v-for="restaurant in restaurants" :key="restaurant._id" class="card" @click="openModalRestau(restaurant)">
             <img :src="restaurant.image" alt="Image du restaurant" class="card-image" />
             <div class="card-content">
               <h2 class="card-title">{{ restaurant.nom }}</h2>
             </div>
           </div>
+        </div>
+        <p v-else>Aucun restaurants disponible.</p>
+      </div>
+
+      <!-- Fenêtre modale restauration -->
+      <div v-if="selectedModalRestau" class="modal">
+        <div class="modal-content">
+          <span class="close-button" @click="closeModalRestau">&times;</span>
+          <h2>{{ selectedModalRestau.name }}</h2>
+          <img :src="selectedModalRestau.image" alt="Image du restaurant" class="modal-image" />
+          <p><strong>Articles :</strong> {{ }}</p>
+          <p><strong>Boissons :</strong> {{ }}</p>
+          <p><strong>Emplacement :</strong> {{ selectedModalRestau.emplacement }}</p>
         </div>
       </div>
 
@@ -28,7 +41,7 @@
         <h2 class="page-other_title">JEUX</h2>
         <div class="cards-container" v-if="jeux.length">
           <!-- Affichage de la boutique sous forme de cartes -->
-          <div v-for="jeu in jeux" :key="jeu._id" class="card" @click="openModal(jeu)">
+          <div v-for="jeu in jeux" :key="jeu._id" class="card" @click="openModalJeu(jeu)">
             <img :src="jeu.image" alt="Image du jeu" class="card-image" />
             <div class="card-content">
               <h2 class="card-title">{{ jeu.name }}</h2>
@@ -56,7 +69,7 @@
       <!-- Fenêtre modale jeux -->
       <div v-if="selectedJeu" class="modal">
         <div class="modal-content">
-          <span class="close-button" @click="closeModal">&times;</span>
+          <span class="close-button" @click="closeModalJeu">&times;</span>
           <h2>{{ selectedJeu.name }}</h2>
           <img :src="selectedJeu.image" alt="Image du jeu" class="modal-image" />
           <p><strong>Type :</strong> {{ selectedJeu.type }}</p>
@@ -88,7 +101,8 @@ export default {
   data() {
     return {
       selectedTab: null, // Onglet par défaut
-      selectedJeu: null,
+      selectedModalJeu: null,
+      selectedModalRestau: null,
       jeux,
       souvenirs,
       restaurants,
@@ -98,12 +112,17 @@ export default {
     selectTab(tab) {
       this.selectedTab = tab;
     },
-    openModal(modal) {
-      console.log(modal + " sélectionné:", modal); // Vérification que la catégorie est bien passé
-      this.selectedJeu = modal;
+    openModalJeu(jeu) {
+      this.selectedModalJeu = jeu;
     },
-    closeModal() {
-      this.selectedJeu = null;
+    closeModalJeu() {
+      this.selectedModalJeu = null;
+    },
+    openModalRestau(restaurant) {
+      this.selectedModalRestau = restaurant;
+    },
+    closeModalRestau() {
+      this.selectedModalRestau = null;
     },
   },
 };

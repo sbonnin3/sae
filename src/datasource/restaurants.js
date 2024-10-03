@@ -13,7 +13,7 @@ export const restaurants = [
     },
     {
         _id: "R3",
-        nom: "Breizh gaufres",
+        nom: "Breizh Gaufres",
         image: require('@/assets/images/breizh_gauffres.png'),
         emplacement: "coordonnées",
     },
