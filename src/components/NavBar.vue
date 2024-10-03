@@ -93,13 +93,18 @@ export default {
   box-shadow: 0 6px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   height: 80px;
-  transition: background-color 0.5s ease-in-out; /* Transition douce entre les styles */
+  transition: background-color 0.40s ease-in-out; /* Transition douce entre les styles */
 }
 
 /* Styles pour la navbar transparente */
 .navbar-transparent {
   background-color: transparent; /* Transparent lorsque `isScrolled` est faux */
   box-shadow: none; /* Supprimer l'ombre */
+}
+
+.navbar-transparent p.nav-item {
+  color: white;
+  text-shadow: black 0px 0px 5px;
 }
 
 /* Styles pour la navbar visible */
@@ -128,7 +133,7 @@ p.nav-item {
   display: flex;
   align-items: center;
   position: relative;
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
   color: black;
 }
 

@@ -1,7 +1,8 @@
 <template>
   <div class="accueilpage">
     <div class="introduction-container">
-      <h1>Festival de parthenay</h1>
+      <h1>Festival International de Parthenay</h1><br>
+      <h3>FLIP</h3>
     </div>
 
 
@@ -107,6 +108,7 @@ export default {
 
 .introduction-container {
   display: flex;
+  flex-direction: row;
   padding-top: 150px;
   width: 100%;
 
@@ -121,6 +123,16 @@ export default {
   margin-left: 70px;
   margin-bottom: 400px;
   padding-bottom: 100px;
+  font-family: "Poppins", sans-serif;
+  font-size: 50px;
+  text-shadow: black 2px 2px 2px;
+}
+
+.introduction-container > h3 {
+  color: white;
+  font-weight: bold;
+  padding-top: 100px;
+  padding-right: 300px;
   font-family: "Poppins", sans-serif;
   font-size: 50px;
   text-shadow: black 2px 2px 2px;
