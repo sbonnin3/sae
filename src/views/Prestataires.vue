@@ -67,16 +67,16 @@
       </div>
 
       <!-- Fenêtre modale jeux -->
-      <div v-if="selectedJeu" class="modal">
+      <div v-if="selectedModalJeu" class="modal">
         <div class="modal-content">
           <span class="close-button" @click="closeModalJeu">&times;</span>
-          <h2>{{ selectedJeu.name }}</h2>
-          <img :src="selectedJeu.image" alt="Image du jeu" class="modal-image" />
-          <p><strong>Type :</strong> {{ selectedJeu.type }}</p>
-          <p><strong>Joueurs :</strong> {{ selectedJeu.nombre_de_joueurs }}</p>
-          <p><strong>Âge minimum : </strong> À partir de {{ selectedJeu.age_minimum }} ans</p>
-          <p><strong>Durée : </strong> {{ selectedJeu.duree }} min</p>
-          <p><strong>Éditeur :</strong> {{ selectedJeu.editeur }}</p>
+          <h2>{{ selectedModalJeu.name }}</h2>
+          <img :src="selectedModalJeu.image" alt="Image du jeu" class="modal-image" />
+          <p><strong>Type :</strong> {{ selectedModalJeu.type }}</p>
+          <p><strong>Joueurs :</strong> {{ selectedModalJeu.nombre_de_joueurs }}</p>
+          <p><strong>Âge minimum : </strong> À partir de {{ selectedModalJeu.age_minimum }} ans</p>
+          <p><strong>Durée : </strong> {{ selectedModalJeu.duree }} min</p>
+          <p><strong>Éditeur :</strong> {{ selectedModalJeu.editeur }}</p>
         </div>
       </div>
 
