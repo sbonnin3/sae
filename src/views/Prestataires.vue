@@ -14,7 +14,7 @@
       <div v-if="selectedTab === 'Restauration'">
         <div class="cards-container" v-if="restaurants.length">
           <!-- Affichage des restaurants sous forme de cartes -->
-          <div v-for="restaurant in restaurants" :key="restaurant._id" class="card" @click="openModalJeu(restaurant)">
+          <div v-for="restaurant in restaurants" :key="restaurant._id" class="card" @click="openModalRestau(restaurant)">
             <img :src="restaurant.image" alt="Image du restaurant" class="card-image" />
             <div class="card-content">
               <h2 class="card-title">{{ restaurant.nom }}</h2>
@@ -31,6 +31,7 @@
           <h2>{{ selectedModalRestau.name }}</h2>
           <img :src="selectedModalRestau.image" alt="Image du restaurant" class="modal-image" />
           <p><strong>Articles :</strong> {{ }}</p>
+          <p><strong>Boissons :</strong> {{ }}</p>
           <p><strong>Emplacement :</strong> {{ selectedModalRestau.emplacement }}</p>
         </div>
       </div>

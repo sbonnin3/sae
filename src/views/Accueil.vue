@@ -1,13 +1,20 @@
 <template>
   <div class="accueilpage">
+    <!-- Conteneur de la vidéo -->
+    <div class="video-section">
+      <video autoplay loop muted playsinline class="video-element">
+        <source src="../assets/videos/video_flip.mp4" type="video/mp4" />
+        Votre navigateur ne prend pas en charge les vidéos HTML5.
+      </video>
+    </div>
+
+    <!-- Conteneur de texte au-dessus de la vidéo -->
     <div class="introduction-container">
-      <h1>Festival International de Parthenay</h1><br>
+      <h1>Festival International de Parthenay</h1>
       <h3>FLIP</h3>
     </div>
 
-
-
-
+    <!-- Conteneur suivant la vidéo et la section d'introduction -->
     <div class="up-container">
       <div class="leftuptextcontainer" :class="{ 'fade-in': fadeText }">
         <h1>{{ currentSlide.title }}</h1>
@@ -15,22 +22,26 @@
         <h5>{{ currentSlide.description }}</h5>
         <button type="submit" class="login-button">En savoir plus</button>
       </div>
-      <img class="festivalimages" :class="{ 'slide-in': fadeImage }" :src="currentSlide.image" alt="imagefestival">
+      <img class="festivalimages" :class="{ 'slide-in': fadeImage }" :src="currentSlide.image" alt="imagefestival" />
     </div>
+
+    <!-- Indicateurs de carrousel -->
     <div class="carousel-indicators">
       <span
-          v-for="(slide, index) in slides"
-          :key="index"
-          :class="{ active: currentIndex === index }"
-          class="indicator"
+        v-for="(slide, index) in slides"
+        :key="index"
+        :class="{ active: currentIndex === index }"
+        class="indicator"
       ></span>
     </div>
+
+    <!-- Section de contenu supplémentaire -->
     <div class="mid-container">
       <h1>N'attendez plus tout est gratuit !</h1>
       <div class="firstimagecontainer">
-        <img class="firstimagecontainerone" src="../assets/images/eventicon.png" width="105px" height="100px">
-        <img class="firstimagecontainerone" src="../assets/images/priceicon.png" width="105px" height="100px">
-        <img class="firstimagecontainerone" src="../assets/images/foodicon.png" width="105px" height="100px">
+        <img class="firstimagecontainerone" src="../assets/images/eventicon.png" width="105px" height="100px" />
+        <img class="firstimagecontainerone" src="../assets/images/priceicon.png" width="105px" height="100px" />
+        <img class="firstimagecontainerone" src="../assets/images/foodicon.png" width="105px" height="100px" />
       </div>
     </div>
   </div>
@@ -75,13 +86,12 @@ export default {
         this.fadeImage = false;
         this.fadeText = false;
 
-        // Attendre un court instant pour permettre la sortie des animations
         setTimeout(() => {
           this.currentIndex = (this.currentIndex + 1) % this.slides.length;
           this.fadeImage = true;
           this.fadeText = true;
-        }, 1000); // Temps d'animation de 1 seconde
-      }, 4000); // Changer toutes les 4 secondes
+        }, 1000);
+      }, 4000);
     },
   },
   computed: {
@@ -99,59 +109,74 @@ export default {
       });
     },
   },
-}
+};
 </script>
 
 <style scoped>
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+/* Conteneur pour la vidéo */
+.video-section {
+  width: 100%;
+  height: 10%; /* Hauteur spécifique pour le conteneur de la vidéo */
+  position: relative;
+  overflow: hidden;
+}
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Conteneur de l'introduction */
 .introduction-container {
   display: flex;
-  flex-direction: row;
-  padding-top: 150px;
-  width: 100%;
-
-  background-image: url("../assets/images/backgroundaccueil.jpg");
-  background-size: cover;
-
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: absolute; /* Se superpose à la vidéo */
+  top: 350px; /* Ajuster pour positionner le texte */
+  left: 0;
+  right: 0;
+  z-index: 1; /* Assure que le texte est devant la vidéo */
+  color: white;
 }
 
-.introduction-container > h1 {
-  color: white;
-  font-weight: bold;
-  margin-left: 70px;
-  margin-bottom: 400px;
-  padding-bottom: 100px;
+.introduction-container h1,
+.introduction-container h3 {
   font-family: "Poppins", sans-serif;
-  font-size: 50px;
   text-shadow: black 2px 2px 2px;
 }
 
-.introduction-container > h3 {
-  color: white;
-  font-weight: bold;
-  padding-top: 100px;
-  padding-right: 300px;
-  font-family: "Poppins", sans-serif;
+.introduction-container h1 {
   font-size: 50px;
-  text-shadow: black 2px 2px 2px;
 }
 
+.introduction-container h3 {
+  font-size: 40px;
+}
+
+/* Conteneur de la page */
 .accueilpage {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Conteneur suivant la vidéo */
 .up-container {
   background-color: #fcfcfc;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding: 20px;
+  margin-top: 20px;
 }
 
+/* Texte et image du carrousel */
 .leftuptextcontainer {
   text-align: left;
   padding-left: 100px;
@@ -177,9 +202,9 @@ export default {
 
 .festivalimages.slide-in {
   transform: translateX(0); /* Remonte à sa position d'origine */
-  /* Pas besoin de changer l'opacité ici, car elle reste constante */
 }
 
+/* Indicateurs de carrousel */
 .carousel-indicators {
   display: flex;
   justify-content: center;
@@ -191,36 +216,19 @@ export default {
   height: 10px;
   margin: 0 5px;
   border-radius: 50%;
-  background-color: #ddd; /* Couleur grise pour les indicateurs inactifs */
+  background-color: #ddd;
 }
 
 .indicator.active {
-  background-color: #007bff; /* Couleur bleue pour l'indicateur actif */
-}
-
-.leftuptextcontainer h1 {
-  margin-bottom: 20px;
-}
-
-button {
-  width: 150px;
-  padding: 10px;
   background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3; /* Changement de couleur au survol */
-}
-
+/* Conteneur central */
 .mid-container {
   padding-top: 50px;
 }
 
-.mid-container > h1 {
+.mid-container h1 {
   color: black;
   border-bottom: red solid 4px;
   padding: 15px;
@@ -233,11 +241,9 @@ button:hover {
   margin-top: 20px;
 }
 
-.firstimagecontainerone, .firstimagecontainertwo, .firstimagecontainerthree {
-
-}
-
-.firstimagecontainerone, .firstimagecontainerthree {
+.firstimagecontainerone,
+.firstimagecontainertwo,
+.firstimagecontainerthree {
   margin-right: 200px;
   margin-left: 200px;
 }
