@@ -5,6 +5,7 @@ import { comptes } from '@/datasource/comptes'; // Importer les comptes depuis l
 import { getAllSouvenirs } from "@/services/souvenirsService";
 import { getAllNourritures } from "@/services/nourrituresService";
 import { getAllRestaurant } from "@/services/restaurantsService";
+import { getAllBoissons } from "@/services/boissonsService";
 
 Vue.use(Vuex);
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     souvenirs: [], // Liste des souvenirs
     nourritures : [], // Liste de la nourritures
     restaurants : [], // Listes des restaurants
+    boissons : [], // Listes des boissons
   },
   mutations: {
     // Mutation pour définir la liste des tournois
@@ -45,6 +47,10 @@ export default new Vuex.Store({
     // Mutation pour définir tout les restaurants
     SET_RESTAURANT(state, restaurants){
       state.restaurants = restaurants;
+    },
+    // Mutation pour définir les boissons
+    SET_BOISSON(state, boissons){
+      state.boissons = boissons;
     },
   },
   actions: {
@@ -107,6 +113,18 @@ export default new Vuex.Store({
       } catch (error) {
         console.error("Erreur lors de la récupération des restaurants :", error);
       }
+    },
+    // Actions pour récupérer les boissons
+    async getAllBoissons({ commit }){
+      try {
+        const response = await getAllBoissons();
+        console.log('Boissons récupérés :', response.data);
+        if (response.error === 0) {
+          commit('SET_BOISSON', response.data);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des boissons :", error);
+      }
     }
   },
   getters: {
@@ -122,5 +140,7 @@ export default new Vuex.Store({
     nourritures: state => state.nourritures,
     //Getter pour récupérer les restaurants
     restaurants: state => state.restaurants,
+    // Getter pour récupérer les boissons
+    boissons: state => state.boissons,
   },
 });

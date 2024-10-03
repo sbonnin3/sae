@@ -7,6 +7,7 @@ import { stands } from './stands';
 import { souvenirs } from "./souvenirs";
 import { nourritures } from "./nourritures";
 import { restaurants } from "./restaurants";
+import { boissons} from "./boissons";
 
 export {
   tournois,
@@ -18,4 +19,5 @@ export {
   souvenirs,
   nourritures,
   restaurants,
+  boissons,
 };
