@@ -1,6 +1,6 @@
 <template>
     <div class="map-container">
-      <p>Carte de Parthenay</p>
+      <h1 class="page-title">Carte de Parthenay</h1>
       <!-- Selecteur de catégorie -->
       <select v-model="selectedCategory" @change="filterPoints">
         <option value="">Toutes les catégories</option>
@@ -124,6 +124,7 @@
   
   <style scoped>
   .map-container {
+    padding-top: 60px;
     max-width: 90%;
     margin: 20px auto;
   }

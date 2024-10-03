@@ -276,7 +276,7 @@ form button {
 }
 
 .prestataire-container {
-  padding: 20px;
+  padding: 80px;
   text-align: center;
 }
 

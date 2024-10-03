@@ -262,7 +262,7 @@ export default {
 <style scoped>
 /* Container principal pour les tournois et les jeux */
 .tournois-container {
-    padding: 20px;
+    padding: 80px;
     text-align: center;
 }
 
