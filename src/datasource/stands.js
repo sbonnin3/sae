@@ -1,3 +1,5 @@
+import { restaurants } from "./prestataires/restaurants";
+
 export const stands = [
     {
         id: 1234,
@@ -23,3 +25,8 @@ export const stands = [
         ]
     },
 ];
+
+export {
+    restaurants,
+};
+  
