@@ -6,39 +6,48 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 import NavBar from "@/components/NavBar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     NavBar,
   },
   data: () => ({
     navTitles: [
-      { text: 'Accueil' },
-      { text: 'Activités' },
-      { text: 'Carte' },
-      { text: 'Prestataires' },
-      { text: 'Connexion' }
+      { text: "Accueil" },
+      { text: "Activités" },
+      { text: "Carte" },
+      { text: "Prestataires" },
+      { text: "Connexion" }
     ],
   }),
+  computed: {
+    ...mapGetters(["userSession"]), // Récupère l'état de la session utilisateur depuis le store
+  },
+  watch: {
+    // Surveiller les changements de l'utilisateur connecté pour mettre à jour le nom du bouton Connexion
+    userSession(newSession) {
+      this.updateNavTitles(newSession);
+    },
+  },
   methods: {
-    ...mapActions(['getAllTournois']),
+    ...mapActions(["getAllTournois"]),
 
     handleMenuClick(index) {
       // Définir les chemins associés à chaque bouton
-      let route = '';
+      let route = "";
       if (index === 0) {
-        route = '/Accueil';
+        route = "/Accueil";
       } else if (index === 1) {
-        route = '/Activites';
+        route = "/Activites";
       } else if (index === 2) {
-        route = '/Carte';
+        route = "/Carte";
       } else if (index === 3) {
-        route = '/Prestataires';
+        route = "/Prestataires";
       } else if (index === 4) {
-        route = '/Connexion';
+        route = this.userSession ? "/MonCompte" : "/Connexion"; // Redirection conditionnelle en fonction de la session
       }
 
       // Vérifier si la route actuelle est différente de la route cible
@@ -46,11 +55,22 @@ export default {
         this.$router.push(route);
       }
     },
+
+    // Méthode pour mettre à jour dynamiquement le nom du bouton "Connexion" en fonction de la session utilisateur
+    updateNavTitles(session) {
+      if (session) {
+        this.navTitles[4].text = "Mon Compte";
+      } else {
+        this.navTitles[4].text = "Connexion";
+      }
+    },
   },
   mounted() {
     this.getAllTournois();
-  }
-}
+    // Mettre à jour les titres au montage si l'utilisateur est déjà connecté
+    this.updateNavTitles(this.userSession);
+  },
+};
 </script>
 
 <style>
@@ -77,5 +97,4 @@ body {
   width: 100vw;
   overflow-x: hidden;
 }
-
 </style>

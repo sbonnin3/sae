@@ -5,7 +5,8 @@ import Activites from '../views/Activites.vue';
 import Carte from '../views/Carte.vue';
 import Prestataires from '../views/Prestataires.vue';
 import Connexion from '../views/Connexion.vue';
-import store from '../store/index.js'; // Importer le store pour vérifier la session utilisateur
+import MonCompte from '../views/MonCompte.vue'; // Nouvelle page "Mon Compte"
+import store from '../store/index.js';
 
 Vue.use(VueRouter);
 
@@ -36,13 +37,19 @@ const routes = [
     component: Connexion,
   },
   {
+    path: "/MonCompte",
+    name: "MonCompte",
+    component: MonCompte,
+    meta: { requiresAuth: true }, // Route protégée nécessitant l'authentification
+  },
+  {
     path: "/",
     redirect: "/Accueil",
   },
   {
     path: "*",
     redirect: "/Accueil",
-  }
+  },
 ];
 
 const router = new VueRouter({
@@ -51,20 +58,19 @@ const router = new VueRouter({
   routes,
 });
 
-// Navigation guard pour vérifier l'authentification avant d'accéder aux routes protégées
+// Navigation guard pour vérifier l'authentification
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    // Si la route nécessite une authentification et que l'utilisateur n'est pas connecté
     if (!store.getters.userSession) {
       next({
         path: '/Connexion',
-        query: { redirect: to.fullPath } // Redirige vers la page de connexion
+        query: { redirect: to.fullPath }
       });
     } else {
-      next(); // L'utilisateur est connecté, il peut accéder à la route
+      next();
     }
   } else {
-    next(); // La route ne nécessite pas d'authentification
+    next();
   }
 });
 

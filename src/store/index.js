@@ -1,7 +1,8 @@
+// store/index.js
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { getAllTournois } from '@/services/tournoisService';
-import { comptes } from '@/datasource/comptes'; // Importer les comptes depuis le fichier `comptes.js`
+import { comptes } from '@/datasource/comptes';
 import { getAllSouvenirs } from "@/services/souvenirsService";
 import { getAllNourritures } from "@/services/nourrituresService";
 import { getAllRestaurant } from "@/services/restaurantsService";
@@ -15,9 +16,9 @@ export default new Vuex.Store({
     comptes: comptes, // Liste des comptes utilisateurs
     userSession: null, // Stocker l'utilisateur connecté (null si déconnecté)
     souvenirs: [], // Liste des souvenirs
-    nourritures : [], // Liste de la nourritures
-    restaurants : [], // Listes des restaurants
-    boissons : [], // Listes des boissons
+    nourritures: [], // Liste de la nourriture
+    restaurants: [], // Liste des restaurants
+    boissons: [], // Liste des boissons
   },
   mutations: {
     // Mutation pour définir la liste des tournois
@@ -36,20 +37,20 @@ export default new Vuex.Store({
     ADD_COMPTE(state, nouveauCompte) {
       state.comptes.push(nouveauCompte);
     },
-    // Mutatation pour définir tout les souvenirs
-    SET_SOUVENIR(state, souvenirs){
-      state.boutique = souvenirs;
+    // Mutation pour définir tous les souvenirs
+    SET_SOUVENIR(state, souvenirs) {
+      state.souvenirs = souvenirs;
     },
     // Mutation pour définir toute la nourriture
-    SET_NOURRITURE(state, nourritures){
+    SET_NOURRITURE(state, nourritures) {
       state.nourritures = nourritures;
     },
-    // Mutation pour définir tout les restaurants
-    SET_RESTAURANT(state, restaurants){
+    // Mutation pour définir tous les restaurants
+    SET_RESTAURANT(state, restaurants) {
       state.restaurants = restaurants;
     },
     // Mutation pour définir les boissons
-    SET_BOISSON(state, boissons){
+    SET_BOISSON(state, boissons) {
       state.boissons = boissons;
     },
   },
@@ -78,11 +79,11 @@ export default new Vuex.Store({
     addCompte({ commit }, compte) {
       commit('ADD_COMPTE', compte);
     },
-    // Action pour récupérer tout les souvenirs
+    // Action pour récupérer tous les souvenirs
     async getAllSouvenirs({ commit }) {
       try {
         const response = await getAllSouvenirs();
-        console.log('Souvenir récupérés :', response.data);
+        console.log('Souvenirs récupérés :', response.data);
         if (response.error === 0) {
           commit('SET_SOUVENIR', response.data);
         }
@@ -91,10 +92,10 @@ export default new Vuex.Store({
       }
     },
     // Action pour récupérer la nourriture
-    async getAllNourritures({ commit }){
+    async getAllNourritures({ commit }) {
       try {
         const response = await getAllNourritures();
-        console.log('Nourriture récupérés :', response.data);
+        console.log('Nourriture récupérée :', response.data);
         if (response.error === 0) {
           commit('SET_NOURRITURE', response.data);
         }
@@ -103,7 +104,7 @@ export default new Vuex.Store({
       }
     },
     // Action pour récupérer les restaurants
-    async getAllRestaurant({ commit }){
+    async getAllRestaurant({ commit }) {
       try {
         const response = await getAllRestaurant();
         console.log('Restaurants récupérés :', response.data);
@@ -114,33 +115,33 @@ export default new Vuex.Store({
         console.error("Erreur lors de la récupération des restaurants :", error);
       }
     },
-    // Actions pour récupérer les boissons
-    async getAllBoissons({ commit }){
+    // Action pour récupérer les boissons
+    async getAllBoissons({ commit }) {
       try {
         const response = await getAllBoissons();
-        console.log('Boissons récupérés :', response.data);
+        console.log('Boissons récupérées :', response.data);
         if (response.error === 0) {
           commit('SET_BOISSON', response.data);
         }
       } catch (error) {
         console.error("Erreur lors de la récupération des boissons :", error);
       }
-    }
+    },
   },
   getters: {
     // Getter pour récupérer tous les tournois
-    tournois: state => state.tournois,
+    tournois: (state) => state.tournois,
     // Getter pour récupérer tous les comptes
-    comptes: state => state.comptes,
+    comptes: (state) => state.comptes,
     // Getter pour récupérer la session utilisateur
-    userSession: state => state.userSession,
-    // Getter pour récupérer tout les souvenirs
-    souvenirs: state => state.souvenirs,
-    //Getter pour récupérer la nourriture
-    nourritures: state => state.nourritures,
-    //Getter pour récupérer les restaurants
-    restaurants: state => state.restaurants,
+    userSession: (state) => state.userSession,
+    // Getter pour récupérer tous les souvenirs
+    souvenirs: (state) => state.souvenirs,
+    // Getter pour récupérer la nourriture
+    nourritures: (state) => state.nourritures,
+    // Getter pour récupérer les restaurants
+    restaurants: (state) => state.restaurants,
     // Getter pour récupérer les boissons
-    boissons: state => state.boissons,
+    boissons: (state) => state.boissons,
   },
 });

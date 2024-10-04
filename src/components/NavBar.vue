@@ -1,17 +1,17 @@
 <template>
   <div class="navbar-container">
     <nav
-        class="navbar"
-        :class="{ 'navbar-transparent': !isScrolled && isOnHomePage, 'navbar-visible': isScrolled || !isOnHomePage }"
+      class="navbar"
+      :class="{ 'navbar-transparent': !isScrolled && isOnHomePage, 'navbar-visible': isScrolled || !isOnHomePage }"
     >
       <div class="nav-titles">
         <img src="../assets/images/logo.png" alt="logo" width="100px" height="80px" />
         <p
-            v-for="(title, index) in titles"
-            :key="index"
-            :style="{ color: title.color }"
-            @click="emitMenuClicked(index)"
-            class="nav-item"
+          v-for="(title, index) in displayedTitles"
+          :key="index"
+          :style="{ color: title.color }"
+          @click="emitMenuClicked(index)"
+          class="nav-item"
         >
           {{ title.text }}
         </p>
@@ -28,12 +28,28 @@ export default {
       type: Array,
       required: true,
     },
+    userSession: {
+      type: Object,
+      default: null, // Par défaut, l'utilisateur n'est pas connecté
+    },
   },
   data() {
     return {
       isScrolled: false, // Indicateur pour suivre si la page est défilée
       isOnHomePage: false, // Indicateur pour savoir si l'utilisateur est sur la page d'accueil
     };
+  },
+  computed: {
+    // Afficher dynamiquement les titres en fonction de l'état de connexion
+    displayedTitles() {
+      return this.titles.map((title, index) => {
+        // Remplace l'onglet Connexion par Mon Compte si l'utilisateur est connecté
+        if (index === 4) {
+          return this.userSession ? { ...title, text: "Mon Compte" } : title;
+        }
+        return title;
+      });
+    },
   },
   mounted() {
     this.checkIfOnHomePage(); // Vérifier si on est sur la page d'accueil lors du montage
@@ -75,11 +91,6 @@ export default {
 </script>
 
 <style scoped>
-/* Styles de base de la navbar */
-.navbar-container {
-
-}
-
 .navbar {
   position: fixed;
   top: 0;
