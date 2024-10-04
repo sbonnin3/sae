@@ -1,9 +1,25 @@
 export const stands = [
     {
         id: 1234,
-        nom: 'Black Rock',
+        nom: 'Boutique',
+        type: "boutique",
         image: require('@/assets/images/stand_blackrock.png'),
         emplacement: "coordonnées",
-        comptes: [12343],
+        comptes: [12345],
+        articles: [
+            {nom: "Gobbit", prix: 10}
+        ]
+    },
+    {
+        id: 1235,
+        nom: 'Mie Caline',
+        type: "restaurants",
+        image: require('@/assets/images/stand_blackrock.png'),
+        emplacement: "coordonnées",
+        comptes: [12342],
+        articles: [
+            {nom: "burger", prix: 8, stock: 564},
+            {nom: "cookie", prix: 3, stock: 564}
+        ]
     },
 ];
