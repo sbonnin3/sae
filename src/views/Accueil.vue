@@ -1,49 +1,66 @@
 <template>
   <div class="accueilpage">
-    <!-- Conteneur de la vidéo -->
-    <div class="video-section">
-      <video autoplay loop muted playsinline class="video-element">
-        <source src="../assets/videos/video_flip.mp4" type="video/mp4" />
-        Votre navigateur ne prend pas en charge les vidéos HTML5.
-      </video>
-    </div>
-
-    <!-- Conteneur de texte au-dessus de la vidéo -->
+    <!-- Introduction container with changing text -->
     <div class="introduction-container">
-      <h1>Festival International de Parthenay</h1>
-      <h3>FLIP</h3>
-    </div>
-
-    <!-- Conteneur suivant la vidéo et la section d'introduction -->
-    <div class="up-container">
-      <div class="leftuptextcontainer" :class="{ 'fade-in': fadeText }">
+      <div class="text-container" :class="{ 'fade-in-text': fadeText, 'fade-out-text': !fadeText }">
         <h1>{{ currentSlide.title }}</h1>
         <h3>{{ currentSlide.subtitle }}</h3>
-        <h5>{{ currentSlide.description }}</h5>
+      </div>
+    </div>
+    <h1 class="midh1">Pourquoi venir au FLIP ?</h1>
+    <!-- Up-container with carousel -->
+    <div class="up-container">
+      <div class="leftuptextcontainer" :class="{ 'fade-in': fadeText }">
+        <h1>{{ currentCarouselSlide.title }}</h1>
+        <h3>{{ currentCarouselSlide.subtitle }}</h3>
+        <h5>{{ currentCarouselSlide.description }}</h5>
         <button type="submit" class="login-button">En savoir plus</button>
       </div>
-      <img class="festivalimages" :class="{ 'slide-in': fadeImage }" :src="currentSlide.image" alt="imagefestival" />
+      <img class="festivalimages" :class="{ 'slide-in': fadeImage }" :src="currentCarouselSlide.image" alt="imagefestival">
     </div>
 
-    <!-- Indicateurs de carrousel -->
     <div class="carousel-indicators">
       <span
-        v-for="(slide, index) in slides"
-        :key="index"
-        :class="{ active: currentIndex === index }"
-        class="indicator"
+          v-for="(slide, index) in carouselSlides"
+          :key="index"
+          :class="{ active: currentCarouselIndex === index }"
+          class="indicator"
       ></span>
     </div>
 
-    <!-- Section de contenu supplémentaire -->
-    <div class="mid-container">
-      <h1>N'attendez plus tout est gratuit !</h1>
-      <div class="firstimagecontainer">
-        <img class="firstimagecontainerone" src="../assets/images/eventicon.png" width="105px" height="100px" />
-        <img class="firstimagecontainerone" src="../assets/images/priceicon.png" width="105px" height="100px" />
-        <img class="firstimagecontainerone" src="../assets/images/foodicon.png" width="105px" height="100px" />
-      </div>
+    <!-- Mid-container -->
+
+      <h1 class="down-container-title">Interessé ? plus d'informations qui vous donneront encore plus envie !</h1>
+    <h3 class="down-container-uptitle">Lorem ipsum supreme</h3>
+    <div class="down-container">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <img src="../assets/images/backgroundaccueil_3.jpg" width="470" height="310" class="down-container-image1">
     </div>
+    <h3 class="down-container-uptitleright">Lorem ipsum supreme</h3>
+    <div class="down-containertwo">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <img src="../assets/images/backgroundaccueil_3.jpg" width="470" height="310" class="down-container-image1">
+    </div>
+    <h3 class="down-container-uptitle">Lorem ipsum supreme</h3>
+    <div class="down-container">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <img src="../assets/images/backgroundaccueil_3.jpg" width="470" height="310" class="down-container-image1">
+    </div>
+
+
   </div>
 </template>
 
@@ -52,10 +69,29 @@ export default {
   name: "PageAccueil",
   data() {
     return {
-      currentIndex: 0,
-      fadeImage: true,
+      currentIndex: 0, // Pour le texte d'introduction
+      currentCarouselIndex: 0, // Pour le carousel du milieu
       fadeText: true,
+      fadeImage: true,
       slides: [
+        {
+          title: "Festival International de Parthenay",
+          subtitle: "Le plus grand festival de jeux en plein air",
+        },
+        {
+          title: "Plus de 30 ans d'existence",
+          subtitle: "Un événement culturel et ludique unique",
+        },
+        {
+          title: "Jeux pour tous les âges",
+          subtitle: "Du 9 au 20 juillet 2025 à Parthenay",
+        },
+        {
+          title: "35 000 m² d'animation en ville",
+          subtitle: "Avec des animateurs passionnés pour guider",
+        },
+      ],
+      carouselSlides: [
         {
           title: "Festival des Jeux de Parthenay - FLIP",
           subtitle: "Le plus grand festival de jeux gratuit",
@@ -78,35 +114,37 @@ export default {
     };
   },
   mounted() {
-    this.startCarousel();
+    this.startTextTransition();
+    this.startCarouselTransition();
   },
   methods: {
-    startCarousel() {
+    startTextTransition() {
       setInterval(() => {
-        this.fadeImage = false;
         this.fadeText = false;
 
         setTimeout(() => {
           this.currentIndex = (this.currentIndex + 1) % this.slides.length;
-          this.fadeImage = true;
           this.fadeText = true;
-        }, 1000);
-      }, 4000);
+        }, 1000); // Wait 1 second for fade-out to complete
+      }, 4000); // Change every 4 seconds
+    },
+    startCarouselTransition() {
+      setInterval(() => {
+        this.fadeImage = false;
+
+        setTimeout(() => {
+          this.currentCarouselIndex = (this.currentCarouselIndex + 1) % this.carouselSlides.length;
+          this.fadeImage = true;
+        }, 1000); // Wait 1 second for fade-out to complete
+      }, 4000); // Change every 4 seconds
     },
   },
   computed: {
     currentSlide() {
       return this.slides[this.currentIndex];
     },
-  },
-  watch: {
-    currentIndex() {
-      this.fadeImage = false;
-      this.fadeText = false;
-      this.$nextTick(() => {
-        this.fadeImage = true;
-        this.fadeText = true;
-      });
+    currentCarouselSlide() {
+      return this.carouselSlides[this.currentCarouselIndex];
     },
   },
 };
@@ -115,96 +153,93 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* Conteneur pour la vidéo */
-.video-section {
-  width: 100%;
-  height: 10%; /* Hauteur spécifique pour le conteneur de la vidéo */
-  position: relative;
-  overflow: hidden;
-}
-
-.video-element {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Conteneur de l'introduction */
-.introduction-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: absolute; /* Se superpose à la vidéo */
-  top: 350px; /* Ajuster pour positionner le texte */
-  left: 0;
-  right: 0;
-  z-index: 1; /* Assure que le texte est devant la vidéo */
-  color: white;
-}
-
-.introduction-container h1,
-.introduction-container h3 {
-  font-family: "Poppins", sans-serif;
-  text-shadow: black 2px 2px 2px;
-}
-
-.introduction-container h1 {
-  font-size: 50px;
-}
-
-.introduction-container h3 {
-  font-size: 40px;
-}
-
-/* Conteneur de la page */
 .accueilpage {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Conteneur suivant la vidéo */
+.introduction-container {
+  width: 100%;
+  height: 920px;
+  background-image: url("../assets/images/backgroundaccueil.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.text-container {
+  position: absolute;
+  left: 50px;
+  padding: 20px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.text-container.fade-in-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.text-container.fade-out-text {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.text-container h1 {
+  margin-bottom: 20px;
+  font-size: 50px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+.text-container h3 {
+  padding-top: 10px;
+  font-size: 40px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
 .up-container {
-  background-color: #fcfcfc;
+  background-color: #f9f9f9;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 20px;
-  margin-top: 20px;
 }
 
-/* Texte et image du carrousel */
 .leftuptextcontainer {
   text-align: left;
   padding-left: 100px;
-  opacity: 0; /* Commence invisible */
-  transition: opacity 1s ease-in-out; /* Animation de transition pour le texte */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  color: black;
 }
 
 .leftuptextcontainer.fade-in {
-  opacity: 1; /* Devient visible */
+  opacity: 1;
 }
 
 .festivalimages {
   margin-right: 80px;
   height: 450px;
-  width: 480px;
+  width: 650px;
   margin-top: 30px;
   margin-bottom: 30px;
-  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
-  transform: translateX(100%); /* Commence à droite hors de l'écran */
-  opacity: 1; /* Reste visible */
-  transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Transition plus lente */
+  transform: translateX(100%);
+  opacity: 1;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 }
 
 .festivalimages.slide-in {
-  transform: translateX(0); /* Remonte à sa position d'origine */
+  transform: translateX(0);
 }
 
-/* Indicateurs de carrousel */
 .carousel-indicators {
   display: flex;
   justify-content: center;
@@ -223,28 +258,105 @@ export default {
   background-color: #007bff;
 }
 
-/* Conteneur central */
-.mid-container {
-  padding-top: 50px;
+button {
+  width: 150px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.mid-container h1 {
-  color: black;
+button:hover {
+  background-color: #0056b3;
+}
+
+.midh1 {
   border-bottom: red solid 4px;
-  padding: 15px;
-  display: inline-block;
+  color: black;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
-.firstimagecontainer {
+.down-container {
   display: flex;
-  justify-content: space-around;
+}
+
+.down-container p,
+img {
+  padding-right: 50px;
+  padding-left: 80px;
+  color: black;
+}
+
+.down-container p {
+  width: 45%;
+  line-height: 1.6;
+  margin-left: 90px;
+  text-align: justify;
+  font-size: 18px;
+}
+
+.down-container img {
+  width: 31%;
+  margin-right: 65px;
   margin-top: 20px;
 }
 
-.firstimagecontainerone,
-.firstimagecontainertwo,
-.firstimagecontainerthree {
-  margin-right: 200px;
-  margin-left: 200px;
+.down-container-title {
+  color: white;
+  margin-top: 75px;
+  padding: 75px;
+  width: 80%;
+  background-color: black;
+  text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.7);
+}
+
+.down-container-uptitle {
+  color: black;
+  padding: 3px;
+  margin-left: 170px;
+  margin-right: auto;
+  text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.7);
+  border-bottom: red solid 4px;
+}
+
+.down-containertwo {
+  display: flex;
+  margin-bottom: 150px;
+}
+
+.down-containertwo p,
+img {
+  padding-right: 50px;
+  padding-left: 80px;
+}
+
+.down-containertwo img {
+  width: 31%;
+  margin-left: 90px;
+  margin-top: 20px;
+  margin-right: auto;
+  position: absolute;
+}
+
+.down-containertwo p {
+  color: black;
+  width: 45%;
+  text-align: justify;
+  font-size: 18px;
+  margin-right: 65px;
+  line-height: 1.6;
+  margin-left: auto;
+}
+
+.down-container-uptitleright {
+  color: black;
+  margin-left: auto;
+  margin-right: 120px;
+  margin-top: 50px;
+  text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.7);
+  border-bottom: red solid 4px;
 }
 </style>
